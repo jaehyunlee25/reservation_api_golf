@@ -38,7 +38,7 @@ export default async function handler(req, res) {
 }
 async function main(req, res) {
   const { golf_club_id: golfClubId, date, course, data } = req.body;
-  const { timeSlot, teams, greenFee } = data;
+  // const { timeSlot, teams, greenFee } = data;
 
   EXEC_STEP = '3.1.'; // #3.1.1. golf_course 정보를 얻어온다.
   const qCourses = await QTS.getCourses.fQuery(baseUrl, { golfClubId });
@@ -62,12 +62,23 @@ async function main(req, res) {
   const golfStatusId = qStatus.message[0].id;
 
   EXEC_STEP = '3.3.';
-  const qNew = await QTS.newGolfStatusDetail.fQuery(baseUrl, {
-    golfStatusId,
-    timeSlot,
-    teams,
-    greenFee,
+  const arrValues = [];
+  date.forEach((datum) => {
+    const str = [
+      'uuid()',
+      `'${golfStatusId}'`,
+      `'${datum.timeSlot}'`,
+      `'${datum.greenFee}'`,
+      `'${datum.teams}'`,
+      'now()',
+      'now()',
+    ].join(',');
+    arrValues.push(['(', str, ')'].join(''));
   });
+  const sqlValues = arrValues.join(',');
+
+  EXEC_STEP = '3.3.';
+  const qNew = await QTS.newGolfStatusDetail.fQuery(baseUrl, { sqlValues });
   if (qNew.type === 'error')
     return qNew.onError(res, 'getCourses.3.3.1', 'creating golf_status_detail');
 
