@@ -37,15 +37,15 @@ export default async function handler(req, res) {
 }
 async function main(req, res) {
   const { golf_club_id: golfClubId } = req.body;
-  EXEC_STEP = '3.1.1.'; // #3.1.1. productId를 바탕으로 product 상세 정보를 얻는다.
+  EXEC_STEP = '3.1.1.'; // #3.1.1. golf_course 정보를 얻어온다.
   const qCourses = await QTS.getCourses.fQuery(baseUrl, { golfClubId });
   if (qCourses.type === 'error')
     return qCourses.onError(res, 'getCourses.3.1.1', 'searching prduct');
-  const golfClubs = qCourses.message;
+  const golfCourses = qCourses.message;
 
   // #3.1.3.
   return RESPOND(res, {
-    golfClubs,
+    golfCourses,
     message: '해당하는 데이터를 성공적으로 반환하였습니다.',
     resultCode: 200,
   });
