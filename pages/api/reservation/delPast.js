@@ -41,7 +41,9 @@ async function main(req, res) {
   // const { } = req.body;
 
   EXEC_STEP = '3.1.'; // golf_status 데이터를 지운다.
-  const today = getToday(new Date());
+  const now = new Date();
+  now.setHours(now.getHours() + 9); // set 'Asia/Seoul'
+  const today = getToday(now);
   const qDS = await QTS.delPastGolfStatuses.fQuery(baseUrl, { today });
   if (qDS.type === 'error')
     return qDS.onError(res, 'delPast.3.1.1', 'removing golf_status');
