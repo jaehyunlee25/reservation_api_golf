@@ -63,7 +63,7 @@ async function main(req, res) {
 
   EXEC_STEP = '3.3.';
   const arrValues = [];
-  date.forEach((datum) => {
+  data.forEach((datum) => {
     const str = [
       'uuid()',
       `'${golfStatusId}'`,
