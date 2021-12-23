@@ -6,7 +6,7 @@ import '../../../lib/mariaConn';
   // Query TemplateS
   getClubs: 'getClubs',
 }; */
-const baseUrl = 'sqls/reservation/getClubInfo'; // 끝에 슬래시 붙이지 마시오.
+// const baseUrl = 'sqls/reservation/getClubInfo'; // 끝에 슬래시 붙이지 마시오.
 let EXEC_STEP = '1.0.';
 
 export default async function handler(req, res) {
