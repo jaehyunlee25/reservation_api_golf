@@ -1,12 +1,12 @@
-import { RESPOND, ERROR, SAVE } from '../../../lib/apiCommon';
+import { RESPOND, ERROR, READ } from '../../../lib/apiCommon';
 import '../../../lib/mariaConn';
 // import { get, post } from '../../../lib/xmlHttpRequest';
 
 const QTS = {
   // Query TemplateS
-  getGolfStatusDetail: 'getGolfStatusDetail',
+  getClubs: 'getClubs',
 };
-const baseUrl = 'sqls/reservation/detailCircuitEnd'; // 끝에 슬래시 붙이지 마시오.
+const baseUrl = 'sqls/reservation/getClubInfo'; // 끝에 슬래시 붙이지 마시오.
 let EXEC_STEP = '1.0.';
 
 export default async function handler(req, res) {
@@ -27,7 +27,7 @@ export default async function handler(req, res) {
     return await main(req, res);
   } catch (e) {
     return ERROR(res, {
-      id: 'ERR.reservation.detailCircuitEnd.3.2.2',
+      id: 'ERR.reservation.getClubInfo.3.2.2',
       message: 'post server logic error',
       error: e.toString(),
       step: EXEC_STEP,
@@ -37,31 +37,17 @@ export default async function handler(req, res) {
 async function main(req, res) {
   const { golf_club_id: golfClubId } = req.body;
 
-  EXEC_STEP = '3.3.';
-  const qGet = await QTS.getGolfStatusDetail.fQuery(baseUrl, {});
-  if (qGet.type === 'error')
-    return qGet.onError(
-      res,
-      'detailCircuitEnd.3.3.1',
-      'getting golf_status_detail',
-    );
-  const json = qGet.message;
-
-  EXEC_STEP = '3.4.';
-  const qSave = SAVE(golfClubId, json);
-  if (qSave.type === 'error')
-    return qSave.onError(
-      res,
-      'detailCircuitEnd.3.4.1',
-      'reading golf_status_detail',
-    );
-
-  const result = qSave.message;
+  EXEC_STEP = '3.1.1.'; // #3.1.1. statics에서 자료를 읽는다.
+  const qClubs = READ(golfClubId);
+  if (qClubs.type === 'error')
+    return qClubs.onError(res, 'getGolfClubs.3.1.1', 'searching prduct');
+  const info = qClubs.message;
 
   // #3.1.3.
   return RESPOND(res, {
-    result,
-    message: '해당하는 데이터를 성공적으로 입력하였습니다.',
+    info,
+    golfClubId,
+    message: '해당하는 데이터를 성공적으로 반환하였습니다.',
     resultCode: 200,
   });
 }
