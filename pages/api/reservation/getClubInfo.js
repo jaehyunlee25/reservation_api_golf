@@ -2,10 +2,10 @@ import { RESPOND, ERROR, READ } from '../../../lib/apiCommon';
 import '../../../lib/mariaConn';
 // import { get, post } from '../../../lib/xmlHttpRequest';
 
-const QTS = {
+/* const QTS = {
   // Query TemplateS
   getClubs: 'getClubs',
-};
+}; */
 const baseUrl = 'sqls/reservation/getClubInfo'; // 끝에 슬래시 붙이지 마시오.
 let EXEC_STEP = '1.0.';
 
