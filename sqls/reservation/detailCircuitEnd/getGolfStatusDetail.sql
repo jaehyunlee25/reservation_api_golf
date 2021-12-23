@@ -31,4 +31,5 @@ from golf_status_detail sd
 where gss.id is not null
 order by 
 	gss.date asc,
-	sd.time_slot asc;
+	sd.time_slot asc,
+	gss.course_name asc;
