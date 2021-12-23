@@ -28,4 +28,7 @@ from golf_status_detail sd
 					left join golf_club c on c.id = tgs.golf_club_id
                     left join golf_course gc on gc.id = tgs.golf_course_id) gss
 	on sd.golf_status_id = gss.id
-where gss.id is not null;
+where gss.id is not null
+order by 
+	gss.date asc
+	and gss.time_slot asc;
