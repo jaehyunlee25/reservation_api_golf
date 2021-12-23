@@ -41,7 +41,7 @@ async function main(req, res) {
   const qClubs = READ(golfClubId);
   if (qClubs.type === 'error')
     return qClubs.onError(res, 'getGolfClubs.3.1.1', 'searching prduct');
-  const info = qClubs.message;
+  const info = JSON.parse(qClubs.message);
 
   // #3.1.3.
   return RESPOND(res, {
