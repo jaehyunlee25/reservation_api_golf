@@ -49,7 +49,7 @@ async function main(req, res) {
     return qDS.onError(res, 'delPast.3.1.1', 'removing golf_status');
 
   EXEC_STEP = '3.2.'; // golf_status 데이터를 지운다.
-  const qDSD = await QTS.delPastGolfStatuses.fQuery(baseUrl, { today });
+  const qDSD = await QTS.delPastStatusDetail.fQuery(baseUrl, { today });
   if (qDSD.type === 'error')
     return qDSD.onError(res, 'delPast.3.2.1', 'removing golf_status_detail');
 

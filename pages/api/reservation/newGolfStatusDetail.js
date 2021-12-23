@@ -7,6 +7,7 @@ const QTS = {
   newGolfStatusDetail: 'newGolfStatusDetail',
   getCourses: 'getCourses',
   getStatus: 'getStatus',
+  delPastStatusDetail: 'delPastStatusDetail',
 };
 const baseUrl = 'sqls/reservation/newGolfStatusDetail'; // 끝에 슬래시 붙이지 마시오.
 let EXEC_STEP = '1.0.';
@@ -81,6 +82,11 @@ async function main(req, res) {
   const qNew = await QTS.newGolfStatusDetail.fQuery(baseUrl, { sqlValues });
   if (qNew.type === 'error')
     return qNew.onError(res, 'getCourses.3.3.1', 'creating golf_status_detail');
+
+  EXEC_STEP = '3.3.';
+  const qDel = await QTS.delPastStatusDetail.fQuery(baseUrl, {});
+  if (qDel.type === 'error')
+    return qDel.onError(res, 'getCourses.3.3.1', 'removing golf_status_detail');
 
   // #3.1.3.
   return RESPOND(res, {

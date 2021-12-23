@@ -7,6 +7,7 @@ const QTS = {
   // Query TemplateS
   getCourses: 'getCourses',
   newGolfStatuses: 'newGolfStatuses',
+  delPastGolfStatuses: 'delPastGolfStatuses',
 };
 const baseUrl = 'sqls/reservation/newGolfStatuses'; // 끝에 슬래시 붙이지 마시오.
 let EXEC_STEP = '1.0.';
@@ -83,22 +84,10 @@ async function main(req, res) {
   if (qIns.type === 'error')
     return qIns.onError(res, 'getCourses.3.2.1', 'creating golf_status');
 
-  /* const qStatus = await QTS.newGolfStatus.fQuery(baseUrl, {
-    golfClubId,
-    golfCourseId,
-    date,
-    status,
-    teams,
-  });
-  if (qStatus.type === 'error')
-    return qStatus.onError(res, 'getCourses.3.1.1', 'creating golf_status');
-
-  EXEC_STEP = '3.2.';
-  const qGet = await QTS.getStatus.fQuery(baseUrl, {});
-  if (qGet.type === 'error')
-    return qGet.onError(res, 'getCourses.3.2.1', 'searching golf_status');
-
-  const golfStatus = qGet.message[0]; */
+  EXEC_STEP = '3.5.'; // 과거데이터를 지운다.
+  const qDel = await QTS.delPastGolfStatuses.fQuery(baseUrl, {});
+  if (qDel.type === 'error')
+    return qDel.onError(res, 'getCourses.3.2.1', 'removing golf_status');
 
   // #3.1.3.
   return RESPOND(res, {
