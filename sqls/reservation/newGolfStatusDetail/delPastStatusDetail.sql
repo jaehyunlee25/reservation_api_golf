@@ -6,4 +6,3 @@ where
                 left join golf_status gs on gs.id = gsd.golf_status_id
             where gs.id is null
         );
-    

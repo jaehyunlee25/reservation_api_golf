@@ -85,9 +85,9 @@ async function main(req, res) {
     return qIns.onError(res, 'getCourses.3.4.1', 'creating golf_status');
 
   EXEC_STEP = '3.5.'; // 과거데이터를 지운다.
-  const qDel = await QTS.delPastGolfStatuses.fQuery(baseUrl, {});
+  /* const qDel = await QTS.delPastGolfStatuses.fQuery(baseUrl, {});
   if (qDel.type === 'error')
-    return qDel.onError(res, 'getCourses.3.5.1', 'removing golf_status');
+    return qDel.onError(res, 'getCourses.3.5.1', 'removing golf_status'); */
 
   // #3.1.3.
   return RESPOND(res, {

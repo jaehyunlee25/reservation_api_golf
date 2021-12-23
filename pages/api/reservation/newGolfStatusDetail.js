@@ -84,9 +84,9 @@ async function main(req, res) {
     return qNew.onError(res, 'getCourses.3.3.1', 'creating golf_status_detail');
 
   EXEC_STEP = '3.3.';
-  const qDel = await QTS.delPastStatusDetail.fQuery(baseUrl, {});
+  /* const qDel = await QTS.delPastStatusDetail.fQuery(baseUrl, {});
   if (qDel.type === 'error')
-    return qDel.onError(res, 'getCourses.3.3.1', 'removing golf_status_detail');
+    return qDel.onError(res, 'getCourses.3.3.1', 'removing golf_status_detail'); */
 
   // #3.1.3.
   return RESPOND(res, {
