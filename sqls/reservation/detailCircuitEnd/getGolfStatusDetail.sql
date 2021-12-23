@@ -30,5 +30,5 @@ from golf_status_detail sd
 	on sd.golf_status_id = gss.id
 where gss.id is not null
 order by 
-	gss.date asc
-	and gss.time_slot asc;
+	gss.date asc,
+	gss.time_slot asc;
