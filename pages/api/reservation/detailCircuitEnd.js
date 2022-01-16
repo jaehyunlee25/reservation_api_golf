@@ -38,7 +38,7 @@ async function main(req, res) {
   const { golf_club_id: golfClubId } = req.body;
 
   EXEC_STEP = '3.3.';
-  const qGet = await QTS.getGolfStatusDetail.fQuery(baseUrl, {});
+  const qGet = await QTS.getGolfStatusDetail.fQuery(baseUrl, { golfClubId });
   if (qGet.type === 'error')
     return qGet.onError(
       res,

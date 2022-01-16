@@ -17,6 +17,8 @@ from golf_status_detail sd
 						from  golf_status
 								left join golf_course on golf_course.id = golf_status.golf_course_id
 						where 
+							golf_status.golf_club_id = '${golfClubId}'
+							and
 							(golf_status.date, golf_status.created_at) 
 							in (select 
 									date, 
