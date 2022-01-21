@@ -25,6 +25,8 @@ from golf_status_detail sd
                                     max(created_at) created_at 
 								from 
 									golf_status
+								where 
+									golf_club_id = '${golfClubId}'
 								group by date)
 						order by golf_status.date asc) tgs 
 					left join golf_club c on c.id = tgs.golf_club_id
