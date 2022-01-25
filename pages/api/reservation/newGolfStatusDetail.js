@@ -39,6 +39,7 @@ export default async function handler(req, res) {
 }
 async function main(req, res) {
   const { golf_club_id: golfClubId, date, course, data } = req.body;
+  console.log(req.body);
   // const { timeSlot, teams, greenFee } = data;
 
   EXEC_STEP = '3.1.'; // #3.1.1. golf_course 정보를 얻어온다.
