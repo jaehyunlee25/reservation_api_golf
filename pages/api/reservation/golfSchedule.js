@@ -4,10 +4,7 @@ import '../../../lib/mariaConn';
 
 const QTS = {
   // Query TemplateS
-  newGolfStatusDetail: 'newGolfStatusDetail',
-  getCourses: 'getCourses',
-  getStatus: 'getStatus',
-  delPastStatusDetail: 'delPastStatusDetail',
+  newGolfSchedule: 'newGolfSchedule',
 };
 const baseUrl = 'sqls/reservation/golfSchedule'; // 끝에 슬래시 붙이지 마시오.
 let EXEC_STEP = '1.0.';
@@ -39,6 +36,7 @@ export default async function handler(req, res) {
 }
 async function main(req, res) {
   const { golf_schedule: golfSchedule } = req.body;
+  console.log(req.body);
 
   EXEC_STEP = '3.3.';
   const arrValues = [];
