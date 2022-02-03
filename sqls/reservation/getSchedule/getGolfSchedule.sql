@@ -1,8 +1,8 @@
 select 
     gs.id,
-    gcb.name,
+    gcb.name golf_club_name,
     date_format(gs.date, '%Y-%m-%d') as date,
-    gcs.name,    
+    gcs.name golf_course_name,
     gs.time,
     gs.fee_normal,
     gs.fee_discount,
