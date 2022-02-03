@@ -1,7 +1,7 @@
 select 
     gs.id,
     gcb.name,
-    gs.date,    
+    date_format(gs.date, '%Y-%m-%d'),
     gcs.name,    
     gs.time,
     gs.fee_normal,
