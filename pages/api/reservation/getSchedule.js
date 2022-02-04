@@ -1,3 +1,5 @@
+/* eslint-disable func-names */
+/* eslint-disable no-extend-native */
 import { RESPOND, ERROR } from '../../../lib/apiCommon';
 import '../../../lib/mariaConn';
 // import { get, post } from '../../../lib/xmlHttpRequest';
@@ -41,11 +43,24 @@ async function main(req, res) {
   const qGS = await QTS.getGolfSchedule.fQuery(baseUrl, { golfClubId });
   if (qGS.type === 'error')
     return qGS.onError(res, 'getGolfSchedule.3.2.1', 'getting golf_schedule');
+  const arr = qGS.message;
+  const result = {};
+  arr.forEach((ob) => {
+    result
+      .branch(ob.date, {})
+      .branch(ob.golf_course_name, {})
+      .branch(ob.time.gh(2), [])
+      .push(ob);
+  });
 
   // #3.1.3.
   return RESPOND(res, {
     message: '해당하는 데이터를 성공적으로 입력하였습니다.',
-    schedule: qGS.message,
+    schedule: result,
     resultCode: 200,
   });
 }
+Object.prototype.branch = function (key, val) {
+  if (this[key] === undefined) this[key] = val;
+  return this[key];
+};
