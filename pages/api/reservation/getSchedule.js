@@ -64,3 +64,7 @@ Object.prototype.branch = function (key, val) {
   if (this[key] === undefined) this[key] = val;
   return this[key];
 };
+String.prototype.gh = function (num) {
+  // get head
+  return this.substring(0, num);
+};
