@@ -6,7 +6,8 @@ select
     gs.time,
     gs.fee_normal,
     gs.fee_discount,
-    gs.others
+    gs.others,
+    gs.created_at,
 from
     golf_schedule gs
     left join golf_club gcb on gcb.id = gs.golf_club_id
