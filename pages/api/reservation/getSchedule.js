@@ -45,9 +45,7 @@ async function main(req, res) {
     return qGS.onError(res, 'getGolfSchedule.3.2.1', 'getting golf_schedule');
   const arr = qGS.message;
   const result = {};
-  const timeStamp = new Date(arr[0].create_at).toLocaleDateString('en-US', {
-    timeZone: 'Asia/Seoul',
-  });
+  const timeStamp = new Date(arr[0].create_at).toString();
   arr.forEach((ob) => {
     result
       .branch(ob.date, {})
