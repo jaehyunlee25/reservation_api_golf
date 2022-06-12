@@ -35,12 +35,9 @@ export default async function handler(req, res) {
   }
 }
 async function main(req, res) {
-  const {
-    id: deviceUUID,
-    token: deviceToken,
-  } = req.body;
+  const { id: deviceUUID, token: deviceToken } = req.body;
 
-  EXEC_STEP = '3.1.1.'; // #3.1.1. 
+  EXEC_STEP = '3.1.1.'; // #3.1.1.
   const qSet = await QTS.setDevice.fQuery(baseUrl, {
     deviceUUID,
     deviceToken,

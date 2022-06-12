@@ -35,12 +35,9 @@ export default async function handler(req, res) {
   }
 }
 async function main(req, res) {
-  const {
-    id: deviceUUID,
-    golf_club_id: golfClubId,
-  } = req.body;
+  const { id: deviceUUID, golf_club_id: golfClubId } = req.body;
 
-  EXEC_STEP = '3.1.1.'; // #3.1.1. 
+  EXEC_STEP = '3.1.1.'; // #3.1.1.
   const qDel = await QTS.delGolfClubInDevice.fQuery(baseUrl, {
     deviceUUID,
     golfClubId,
