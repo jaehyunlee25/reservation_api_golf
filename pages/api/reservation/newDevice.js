@@ -53,7 +53,7 @@ async function main(req, res) {
   if (qGet.type === 'error')
     return qGet.onError(res, 'newDevice.3.2.1', 'searching deviceUUID');
 
-  const deviceUUID = qGet.message[0].deviceUUID;
+  const deviceUUID = qGet.message[0];
 
   // #3.1.3.
   return RESPOND(res, {
