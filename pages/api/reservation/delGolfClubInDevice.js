@@ -47,7 +47,7 @@ async function main(req, res) {
   });
   if (qDel.type === 'error')
     return qDel.onError(res, 'delGolfClubInDevice.3.1.1', 'deleting golf_club');
-    
+
   // #3.1.3.
   return RESPOND(res, {
     message: '골프클럽이 성공적으로 삭제되었습니다.',
