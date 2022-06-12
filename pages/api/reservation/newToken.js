@@ -6,7 +6,7 @@ const QTS = {
   // Query TemplateS
   setDevice: 'setDevice',
 };
-const baseUrl = 'sqls/reservation/setToken'; // 끝에 슬래시 붙이지 마시오.
+const baseUrl = 'sqls/reservation/newToken'; // 끝에 슬래시 붙이지 마시오.
 let EXEC_STEP = '1.0.';
 
 export default async function handler(req, res) {
@@ -27,7 +27,7 @@ export default async function handler(req, res) {
     return await main(req, res);
   } catch (e) {
     return ERROR(res, {
-      id: 'ERR.reservation.setToken.3.2.2',
+      id: 'ERR.reservation.newToken.3.2.2',
       message: 'post server logic error',
       error: e.toString(),
       step: EXEC_STEP,
@@ -43,7 +43,7 @@ async function main(req, res) {
     deviceToken,
   });
   if (qSet.type === 'error')
-    return qSet.onError(res, 'setDevice.3.1.1', 'updating Token');
+    return qSet.onError(res, 'newToken.3.1.1', 'updating Token');
 
   // #3.1.3.
   return RESPOND(res, {
