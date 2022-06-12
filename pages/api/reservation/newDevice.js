@@ -5,6 +5,7 @@ import '../../../lib/mariaConn';
 const QTS = {
   // Query TemplateS
   newDevice: 'newDevice',
+  getDeviceUUID: 'getDevice',
 };
 const baseUrl = 'sqls/reservation/newDevice'; // 끝에 슬래시 붙이지 마시오.
 let EXEC_STEP = '1.0.';
@@ -52,7 +53,7 @@ async function main(req, res) {
   if (qGet.type === 'error')
     return qGet.onError(res, 'newDevice.3.2.1', 'searching deviceUUID');
 
-  const deviceUUID = qGet.message[0];
+  const deviceUUID = qGet.message[0].deviceUUID;
 
   // #3.1.3.
   return RESPOND(res, {

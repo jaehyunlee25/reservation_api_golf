@@ -1,5 +1,5 @@
 select 
-    *
+    id deviceUUID
 from
     device
 where
