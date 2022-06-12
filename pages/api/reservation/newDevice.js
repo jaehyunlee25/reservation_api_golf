@@ -36,6 +36,7 @@ export default async function handler(req, res) {
   }
 }
 async function main(req, res) {
+  console.log(req.body);
   const { token: deviceToken, type: deviceType } = req.body;
 
   EXEC_STEP = '3.1.1.'; // #3.1.1.
