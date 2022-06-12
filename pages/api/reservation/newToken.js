@@ -47,7 +47,7 @@ async function main(req, res) {
   });
   if (qSet.type === 'error')
     return qSet.onError(res, 'setDevice.3.1.1', 'updating Token');
-    
+
   // #3.1.3.
   return RESPOND(res, {
     message: '토큰이 성공적으로 갱신되었습니다.',
