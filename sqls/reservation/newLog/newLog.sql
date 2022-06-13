@@ -1,5 +1,5 @@
 insert into 
-    log (
+    LOG (
         type,
         sub_type,
         device_id,
