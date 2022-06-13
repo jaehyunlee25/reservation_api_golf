@@ -4,10 +4,9 @@ import '../../../lib/mariaConn';
 
 const QTS = {
   // Query TemplateS
-  newDevice: 'newDevice',
-  getDeviceUUID: 'getDevice',
+  newLog: 'newLog',
 };
-const baseUrl = 'sqls/reservation/newDevice'; // 끝에 슬래시 붙이지 마시오.
+const baseUrl = 'sqls/reservation/newLog'; // 끝에 슬래시 붙이지 마시오.
 let EXEC_STEP = '1.0.';
 
 export default async function handler(req, res) {
@@ -28,7 +27,7 @@ export default async function handler(req, res) {
     return await main(req, res);
   } catch (e) {
     return ERROR(res, {
-      id: 'ERR.reservation.newDevice.3.2.2',
+      id: 'ERR.reservation.newLog.3.2.2',
       message: 'post server logic error',
       error: e.toString(),
       step: EXEC_STEP,
@@ -37,29 +36,44 @@ export default async function handler(req, res) {
 }
 async function main(req, res) {
   console.log(req.body);
-  const { token: deviceToken, type: deviceType } = req.body;
+  const {
+    type,
+    sub_type: subType,
+    device_id: deviceId,
+    device_token: deviceToken,
+    golf_club_id: golfClubId,
+    message,
+    parameter,
+  } = req.body;
 
   EXEC_STEP = '3.1.1.'; // #3.1.1.
-  const qNew = await QTS.newDevice.fQuery(baseUrl, {
+  const ip = req.connection.remoteAddress;
+  const qNew = await QTS.newLog.fQuery(baseUrl, {
+    type,
+    subType,
+    deviceId,
     deviceToken,
-    deviceType,
+    ip,
+    golfClubId,
+    message,
+    parameter,
   });
   if (qNew.type === 'error')
-    return qNew.onError(res, 'newDevice.3.1.1', 'creating Device');
+    return qNew.onError(res, 'newLog.3.1.1', 'creating Device');
 
   EXEC_STEP = '3.2.';
   const qGet = await QTS.getDeviceUUID.fQuery(baseUrl, {
     deviceToken,
   });
   if (qGet.type === 'error')
-    return qGet.onError(res, 'newDevice.3.2.1', 'searching deviceUUID');
+    return qGet.onError(res, 'newLog.3.2.1', 'searching deviceUUID');
 
   const { deviceUUID } = qGet.message[0];
 
   // #3.1.3.
   return RESPOND(res, {
     deviceUUID,
-    message: '디바이스를 성공적으로 등록하였습니다.',
+    message: 'log 성공적으로 등록하였습니다.',
     resultCode: 200,
   });
 }
