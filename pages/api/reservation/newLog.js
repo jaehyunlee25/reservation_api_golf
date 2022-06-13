@@ -46,7 +46,7 @@ async function main(req, res) {
     parameter,
   } = req.body;
 
-  if(!type || !subType || !deviceId || !deviceToken || !golfClubId) 
+  if (!type || !subType || !deviceId || !deviceToken || !golfClubId)
     return qNew.onError(res, 'newLog.3.0.1', 'parameter');
 
   EXEC_STEP = '3.1.1.'; // #3.1.1.
