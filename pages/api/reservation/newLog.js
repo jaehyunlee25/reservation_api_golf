@@ -61,19 +61,9 @@ async function main(req, res) {
   if (qNew.type === 'error')
     return qNew.onError(res, 'newLog.3.1.1', 'creating Device');
 
-  EXEC_STEP = '3.2.';
-  const qGet = await QTS.getDeviceUUID.fQuery(baseUrl, {
-    deviceToken,
-  });
-  if (qGet.type === 'error')
-    return qGet.onError(res, 'newLog.3.2.1', 'searching deviceUUID');
-
-  const { deviceUUID } = qGet.message[0];
-
   // #3.1.3.
   return RESPOND(res, {
-    deviceUUID,
-    message: 'log 성공적으로 등록하였습니다.',
+    message: '로그를 성공적으로 등록하였습니다.',
     resultCode: 200,
   });
 }
