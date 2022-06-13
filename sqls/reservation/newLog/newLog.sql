@@ -18,7 +18,7 @@ insert into
         '${ip}',
         '${golfClubId}',
         '${message}',
-        '${parameter}'
+        '${parameter}',
         now(),
         now()
     );
