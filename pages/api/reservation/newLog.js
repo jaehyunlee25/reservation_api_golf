@@ -1,7 +1,9 @@
 import { RESPOND, ERROR } from '../../../lib/apiCommon';
 import '../../../lib/mariaConn';
-import mqtt from mqtt;
-const publisher = mqtt.connect("mqtt://dev.mnemosyne.co.kr");
+
+const mqtt = require('mqtt');
+
+const publisher = mqtt.connect('mqtt://dev.mnemosyne.co.kr');
 // import { get, post } from '../../../lib/xmlHttpRequest';
 
 const QTS = {
@@ -67,16 +69,19 @@ async function main(req, res) {
     return qNew.onError(res, 'newLog.3.1.1', 'creating Device');
 
   // mqtt
-  publisher.publish("TZLOG", JSON.stringify({
-    type,
-    subType,
-    deviceId,
-    deviceToken,
-    ip,
-    golfClubId,
-    message,
-    parameter,
-  }));
+  publisher.publish(
+    'TZLOG',
+    JSON.stringify({
+      type,
+      subType,
+      deviceId,
+      deviceToken,
+      ip,
+      golfClubId,
+      message,
+      parameter,
+    }),
+  );
   // #3.1.3.
   return RESPOND(res, {
     message: '로그를 성공적으로 등록하였습니다.',
