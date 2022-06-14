@@ -81,6 +81,7 @@ async function main(req, res) {
       message,
       parameter,
     }),
+    { qos: 0 },
   );
   // #3.1.3.
   return RESPOND(res, {
