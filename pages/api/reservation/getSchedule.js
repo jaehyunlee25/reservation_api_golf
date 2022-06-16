@@ -44,6 +44,12 @@ async function main(req, res) {
   if (qGS.type === 'error')
     return qGS.onError(res, 'getGolfSchedule.3.2.1', 'getting golf_schedule');
   const arr = qGS.message;
+
+  if (arr.length === 0)
+    return RESPOND(res, {
+      message: '해당하는 데이터가 없습니다.',
+      resultCode: 400,
+    });
   const result = {};
   const timeStamp = new Date(arr[0].create_at).toString();
   arr.forEach((ob) => {
@@ -56,7 +62,7 @@ async function main(req, res) {
 
   // #3.1.3.
   return RESPOND(res, {
-    message: '해당하는 데이터를 성공적으로 입력하였습니다.',
+    message: '해당하는 데이터를 성공적으로 출력하였습니다.',
     timeStamp,
     schedule: result,
     resultCode: 200,
