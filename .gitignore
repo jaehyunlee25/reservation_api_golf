@@ -36,3 +36,4 @@ yarn-error.log*
 # script
 exec.sh
 exec.bat
+remote.sh
