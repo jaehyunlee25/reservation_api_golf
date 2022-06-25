@@ -2,7 +2,7 @@ select
 	golf_club.id,
 	golf_club.name,
     golf_club_eng.eng_id,
-    golf_club_login_url.web,
+    golf_club.homepage,
     golf_club_login_url.mobile,
     golf_club_login_url.admin_id,
     golf_club_login_url.admin_pw,
