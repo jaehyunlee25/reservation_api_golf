@@ -4,8 +4,6 @@ values(
     '${golfClubId}',
     '',
     '',
-    '',
-    '',
     now(),
     now()
 );
