@@ -4,10 +4,9 @@ import '../../../lib/mariaConn';
 
 const QTS = {
   // Query TemplateS
-  getClubLoginInfo: 'getClubLoginInfo',
-  // getOption: 'getOptionByProductId',
+  getClubSearchinInfo: 'getClubSearchinInfo',
 };
-const baseUrl = 'sqls/reservation/getGolfClubLoginInfo'; // 끝에 슬래시 붙이지 마시오.
+const baseUrl = 'sqls/reservation/getGolfClubSearchinInfo'; // 끝에 슬래시 붙이지 마시오.
 let EXEC_STEP = '1.0.';
 
 export default async function handler(req, res) {
@@ -28,7 +27,7 @@ export default async function handler(req, res) {
     return await main(req, res);
   } catch (e) {
     return ERROR(res, {
-      id: 'ERR.reservation.getGolfClubLoginInfo.3.2.2',
+      id: 'ERR.reservation.getGolfClubSearchInfo.3.2.2',
       message: 'post server logic error',
       error: e.toString(),
       step: EXEC_STEP,
@@ -37,11 +36,11 @@ export default async function handler(req, res) {
 }
 async function main(req, res) {
   EXEC_STEP = '3.1.1.'; // #3.1.1. productId를 바탕으로 product 상세 정보를 얻는다.
-  const qClubs = await QTS.getClubLoginInfo.fQuery(baseUrl, {});
+  const qClubs = await QTS.getGolfClubSearchInfo.fQuery(baseUrl, {});
   if (qClubs.type === 'error')
     return qClubs.onError(
       res,
-      'getGolfClubLoginInfo.3.1.1',
+      'getGolfClubSearchInfo.3.1.1',
       'searching club login info',
     );
   const golfClubs = qClubs.message;
