@@ -4,7 +4,7 @@ import '../../../lib/mariaConn';
 
 const QTS = {
   // Query TemplateS
-  getClubSearchinInfo: 'getClubSearchinInfo',
+  getClubSearchInfo: 'getClubSearchInfo',
 };
 const baseUrl = 'sqls/reservation/getGolfClubSearchinInfo'; // 끝에 슬래시 붙이지 마시오.
 let EXEC_STEP = '1.0.';
