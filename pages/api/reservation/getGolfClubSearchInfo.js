@@ -6,7 +6,7 @@ const QTS = {
   // Query TemplateS
   getClubSearchInfo: 'getClubSearchInfo',
 };
-const baseUrl = 'sqls/reservation/getGolfClubSearchinInfo'; // 끝에 슬래시 붙이지 마시오.
+const baseUrl = 'sqls/reservation/getGolfClubSearchInfo'; // 끝에 슬래시 붙이지 마시오.
 let EXEC_STEP = '1.0.';
 
 export default async function handler(req, res) {
