@@ -36,7 +36,7 @@ export default async function handler(req, res) {
 }
 async function main(req, res) {
   EXEC_STEP = '3.1.1.'; // #3.1.1. productId를 바탕으로 product 상세 정보를 얻는다.
-  const qClubs = await QTS.getGolfClubSearchInfo.fQuery(baseUrl, {});
+  const qClubs = await QTS.getClubSearchInfo.fQuery(baseUrl, {});
   if (qClubs.type === 'error')
     return qClubs.onError(
       res,
