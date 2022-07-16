@@ -38,10 +38,10 @@ export default async function handler(req, res) {
 export const config = {
   api: {
     bodyParser: {
-        sizeLimit: '50mb',
-    }
+      sizeLimit: '50mb',
+    },
   },
-}
+};
 async function main(req, res) {
   const { golf_schedule: golfSchedule, golf_club_id: golfClubId } = req.body;
   console.log(req.body);
