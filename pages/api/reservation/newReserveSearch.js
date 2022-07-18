@@ -93,7 +93,7 @@ async function main(req, res) {
     return qNew.onError(
       res,
       'newReserveSearch.3.3.1',
-      'creating golf_schedule'
+      'creating golf_schedule',
     );
 
   EXEC_STEP = '3.3.';
