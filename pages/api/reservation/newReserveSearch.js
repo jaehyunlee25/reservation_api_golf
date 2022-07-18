@@ -57,7 +57,7 @@ async function main(req, res) {
     );
   const courses = qCourse.message;
   const dictCourse = {};
-  courses.forEach(course => {
+  courses.forEach((course) => {
     dictCourse[course.name] = course.id;
   });
 
@@ -72,7 +72,6 @@ async function main(req, res) {
 
   EXEC_STEP = '3.3.';
   const arrValues = [];
-  
   reserveSearch.forEach((search) => {
     const str = [
       'uuid()',
@@ -91,7 +90,11 @@ async function main(req, res) {
   EXEC_STEP = '3.3.';
   const qNew = await QTS.newReserveSearch.fQuery(baseUrl, { sqlValues });
   if (qNew.type === 'error')
-    return qNew.onError(res, 'newReserveSearch.3.3.1', 'creating golf_schedule');
+    return qNew.onError(
+      res,
+      'newReserveSearch.3.3.1',
+      'creating golf_schedule'
+    );
 
   EXEC_STEP = '3.3.';
   /* const qDel = await QTS.delPastStatusDetail.fQuery(baseUrl, {});
