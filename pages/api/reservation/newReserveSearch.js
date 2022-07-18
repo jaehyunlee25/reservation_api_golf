@@ -75,7 +75,7 @@ async function main(req, res) {
   reserveSearch.forEach((search) => {
     const str = [
       'uuid()',
-      `'${search.golf_club_id}'`,
+      `'${golfClubId}'`,
       `'${dictCourse[search.course]}'`,
       `'${search.date}'`,
       `'${search.time}'`,
