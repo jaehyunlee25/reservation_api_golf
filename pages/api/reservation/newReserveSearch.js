@@ -44,7 +44,11 @@ export const config = {
   },
 };
 async function main(req, res) {
-  const { result: reserveSearch, golf_club_id: golfClubId, device_id: deviceId } = req.body;
+  const { 
+    result: reserveSearch, 
+    golf_club_id: golfClubId, 
+    device_id: deviceId 
+  } = req.body;
   console.log(req.body);
 
   EXEC_STEP = '3.1.';
