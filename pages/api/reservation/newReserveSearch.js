@@ -44,7 +44,7 @@ export const config = {
   },
 };
 async function main(req, res) {
-  const { 
+  const {
     result: reserveSearch,
     golf_club_id: golfClubId,
     device_id: deviceId,
