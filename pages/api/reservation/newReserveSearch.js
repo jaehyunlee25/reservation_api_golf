@@ -45,9 +45,9 @@ export const config = {
 };
 async function main(req, res) {
   const { 
-    result: reserveSearch, 
-    golf_club_id: golfClubId, 
-    device_id: deviceId 
+    result: reserveSearch,
+    golf_club_id: golfClubId,
+    device_id: deviceId,
   } = req.body;
   console.log(req.body);
 
