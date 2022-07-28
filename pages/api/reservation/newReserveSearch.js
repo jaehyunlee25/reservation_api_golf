@@ -74,7 +74,7 @@ async function main(req, res) {
       'removing reserveSearch',
     );
 
-  if(reserveSearch.length === 0) {
+  if (reserveSearch.length === 0) {
     return RESPOND(res, {
       message: '해당하는 데이터를 성공적으로 입력하였습니다.',
       resultCode: 200,
