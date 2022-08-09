@@ -1,4 +1,4 @@
 insert into
-    golf_schedule
+    golf_schedule_date
 values
     ${sqlValues};
