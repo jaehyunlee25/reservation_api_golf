@@ -49,8 +49,8 @@ async function main(req, res) {
   golfDate.forEach((date) => {
     const str = [
       'uuid()',
-      `'${date}'`,
       `'${golfClubId}'`,
+      `'${date}'`,
       'now()',
       'now()',
     ].join(',');
