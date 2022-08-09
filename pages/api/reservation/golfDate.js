@@ -42,11 +42,7 @@ async function main(req, res) {
   EXEC_STEP = '3.2.';
   const qDSD = await QTS.delPastGolfDate.fQuery(baseUrl, { golfClubId });
   if (qDSD.type === 'error')
-    return qDSD.onError(
-      res,
-      'delPastGolfDate.3.2.1',
-      'removing golf_date',
-    );
+    return qDSD.onError(res, 'delPastGolfDate.3.2.1', 'removing golf_date');
 
   EXEC_STEP = '3.3.';
   const arrValues = [];
