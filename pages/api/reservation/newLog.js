@@ -56,8 +56,8 @@ async function main(req, res) {
 
   EXEC_STEP = '3.1.1.'; // #3.1.1.
   const ip =
-    req.headers['x-forwarded-for'] || 
-    req.connection.remoteAddress || 
+    req.headers['x-forwarded-for'] ||
+    req.connection.remoteAddress ||
     req.socket.remoteAddress ||
     req.connection.socket.remoteAddress;
   const qNew = await QTS.newLog.fQuery(baseUrl, {
