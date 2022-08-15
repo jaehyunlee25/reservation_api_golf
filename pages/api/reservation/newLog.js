@@ -70,7 +70,7 @@ async function main(req, res) {
     return qNew.onError(res, 'newLog.3.1.1', 'creating Device');
 
   // mqtt
-  if(!noPub) 
+  if (!noPub)
     publisher.publish(
       'TZLOG',
       JSON.stringify({
