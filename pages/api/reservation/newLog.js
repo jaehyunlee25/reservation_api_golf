@@ -39,7 +39,7 @@ export default async function handler(req, res) {
   }
 }
 async function main(req, res) {
-  console.log(req.body);
+  // console.log(req.body);
   const {
     type,
     sub_type: subType,
