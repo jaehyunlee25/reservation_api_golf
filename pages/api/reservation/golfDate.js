@@ -58,12 +58,12 @@ async function main(req, res) {
       arrValues.push(['(', str, ')'].join(''));
     });
     const sqlValues = arrValues.join(',');
-  
+
     EXEC_STEP = '3.3.';
     const qNew = await QTS.newGolfDate.fQuery(baseUrl, { sqlValues });
     if (qNew.type === 'error')
       return qNew.onError(res, 'golfDate.3.3.1', 'creating golf_schedule');
-  
+
     EXEC_STEP = '3.3.';
     /* const qDel = await QTS.delPastStatusDetail.fQuery(baseUrl, {});
     if (qDel.type === 'error')
