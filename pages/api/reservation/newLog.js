@@ -48,13 +48,18 @@ async function main(req, res) {
     golf_club_id: golfClubId,
     message,
     parameter,
+    noPub,
   } = req.body;
 
   if (!type || !subType || !deviceId || !deviceToken || !golfClubId)
     return qNew.onError(res, 'newLog.3.0.1', 'parameter');
 
   EXEC_STEP = '3.1.1.'; // #3.1.1.
-  const ip = req.connection.remoteAddress;
+  const ip =
+    req.headers['x-forwarded-for'] ||
+    req.connection.remoteAddress ||
+    req.socket.remoteAddress ||
+    req.connection.socket.remoteAddress;
   const qNew = await QTS.newLog.fQuery(baseUrl, {
     type,
     subType,
@@ -69,20 +74,21 @@ async function main(req, res) {
     return qNew.onError(res, 'newLog.3.1.1', 'creating Device');
 
   // mqtt
-  publisher.publish(
-    'TZLOG',
-    JSON.stringify({
-      type,
-      subType,
-      deviceId,
-      deviceToken,
-      ip,
-      golfClubId,
-      message,
-      parameter,
-    }),
-    { qos: 0 },
-  );
+  if (!noPub)
+    publisher.publish(
+      'TZLOG',
+      JSON.stringify({
+        type,
+        subType,
+        deviceId,
+        deviceToken,
+        ip,
+        golfClubId,
+        message,
+        parameter,
+      }),
+      { qos: 0 },
+    );
   // #3.1.3.
   return RESPOND(res, {
     message: '로그를 성공적으로 등록하였습니다.',
