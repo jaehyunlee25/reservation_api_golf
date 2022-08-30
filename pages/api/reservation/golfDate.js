@@ -45,28 +45,30 @@ async function main(req, res) {
     return qDSD.onError(res, 'delPastGolfDate.3.2.1', 'removing golf_date');
 
   EXEC_STEP = '3.3.';
-  const arrValues = [];
-  golfDate.forEach((date) => {
-    const str = [
-      'uuid()',
-      `'${golfClubId}'`,
-      `'${date}'`,
-      'now()',
-      'now()',
-    ].join(',');
-    arrValues.push(['(', str, ')'].join(''));
-  });
-  const sqlValues = arrValues.join(',');
-
-  EXEC_STEP = '3.3.';
-  const qNew = await QTS.newGolfDate.fQuery(baseUrl, { sqlValues });
-  if (qNew.type === 'error')
-    return qNew.onError(res, 'golfDate.3.3.1', 'creating golf_schedule');
-
-  EXEC_STEP = '3.3.';
-  /* const qDel = await QTS.delPastStatusDetail.fQuery(baseUrl, {});
-  if (qDel.type === 'error')
-    return qDel.onError(res, 'getCourses.3.3.1', 'removing golf_status_detail'); */
+  if (golfDate.length > 0) {
+    const arrValues = [];
+    golfDate.forEach((date) => {
+      const str = [
+        'uuid()',
+        `'${golfClubId}'`,
+        `'${date}'`,
+        'now()',
+        'now()',
+      ].join(',');
+      arrValues.push(['(', str, ')'].join(''));
+    });
+    const sqlValues = arrValues.join(',');
+  
+    EXEC_STEP = '3.3.';
+    const qNew = await QTS.newGolfDate.fQuery(baseUrl, { sqlValues });
+    if (qNew.type === 'error')
+      return qNew.onError(res, 'golfDate.3.3.1', 'creating golf_schedule');
+  
+    EXEC_STEP = '3.3.';
+    /* const qDel = await QTS.delPastStatusDetail.fQuery(baseUrl, {});
+    if (qDel.type === 'error')
+      return qDel.onError(res, 'getCourses.3.3.1', 'removing golf_status_detail'); */
+  }
 
   // #3.1.3.
   return RESPOND(res, {
