@@ -36,7 +36,11 @@ export default async function handler(req, res) {
   }
 }
 async function main(req, res) {
-  const { golf_date: golfDate, golf_club_id: golfClubId } = req.body;
+  const {
+    golf_date: golfDate,
+    golf_club_id: golfClubId,
+    device_id: deviceId,
+  } = req.body;
   console.log(req.body);
 
   EXEC_STEP = '3.2.';
@@ -50,6 +54,7 @@ async function main(req, res) {
     golfDate.forEach((date) => {
       const str = [
         'uuid()',
+        `'${deviceId}'`,
         `'${golfClubId}'`,
         `'${date}'`,
         'now()',
