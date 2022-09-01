@@ -43,7 +43,11 @@ export const config = {
   },
 };
 async function main(req, res) {
-  const { golf_schedule: golfSchedule, golf_club_id: golfClubId } = req.body;
+  const {
+    golf_schedule: golfSchedule,
+    golf_club_id: golfClubId,
+    device_id: deviceId,
+  } = req.body;
   console.log(req.body);
 
   EXEC_STEP = '3.2.';
@@ -60,6 +64,7 @@ async function main(req, res) {
   golfSchedule.forEach((schedule) => {
     const str = [
       'uuid()',
+      `'${deviceId}'`,
       `'${schedule.golf_club_id}'`,
       `'${schedule.golf_course_id}'`,
       `'${schedule.date}'`,
