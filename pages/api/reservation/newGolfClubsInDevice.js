@@ -41,7 +41,7 @@ async function main(req, res) {
   const arrValues = [];
   golfClubs.forEach((golfClubId) => {
     const str = [`'${deviceUUID}'`, `'${golfClubId}'`, 'now()', 'now()'].join(
-      ','
+      ',',
     );
     arrValues.push(['(', str, ')'].join(''));
   });
