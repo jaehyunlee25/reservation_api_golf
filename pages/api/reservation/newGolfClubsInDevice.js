@@ -40,7 +40,9 @@ async function main(req, res) {
   EXEC_STEP = '3.1.1.'; // #3.1.1.
   const arrValues = [];
   golfClubs.forEach((golfClubId) => {
-    const str = [`'${deviceUUID}'`, `'${golfClubId}'`, 'now()', 'now()'].join(',');
+    const str = [`'${deviceUUID}'`, `'${golfClubId}'`, 'now()', 'now()'].join(
+      ','
+    );
     arrValues.push(['(', str, ')'].join(''));
   });
   const sqlValues = arrValues.join(',');
@@ -51,7 +53,7 @@ async function main(req, res) {
     return qNew.onError(
       res,
       'newGolfClubsInDevice.3.1.2',
-      'creating golf_club'
+      'creating golf_club',
     );
 
   // #3.1.3.
