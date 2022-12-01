@@ -9,7 +9,8 @@ select
     golf_club.corp_reg_number,
     golf_club.description,
     golf_club_eng.eng_id eng,
-    golf_club_usability.golf_club_state state
+    golf_club_usability.golf_club_state state,
+    golf_club_order.golf_club_score score
 from
     golf_club
     join golf_club_eng on golf_club_eng.golf_club_id = golf_club.id
