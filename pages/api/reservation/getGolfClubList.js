@@ -42,7 +42,7 @@ async function main(req, res) {
     return qClubs.onError(
       res,
       'getGolfClubList.3.1.1',
-      'searching golfclublist'
+      'searching golfclublist',
     );
   const golfClubs = qClubs.message;
 
