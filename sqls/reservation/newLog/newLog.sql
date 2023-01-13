@@ -19,6 +19,6 @@ insert into
         '${golfClubId}',
         '${message}',
         '${parameter}',
-        now(),
-        now()
+        now(6),
+        now(6)
     );
