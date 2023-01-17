@@ -19,4 +19,5 @@ from
     JOIN golf_club_order ON golf_club_order.golf_club_id = golf_club.id
 where
     golf_club_detail.login_script = true
+    and golf_club.name like '%${keyword}%'
 ORDER BY golf_club_order.golf_club_score desc;
